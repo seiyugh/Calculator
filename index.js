@@ -1,17 +1,17 @@
 let display = document.getElementById("display");
 
 function appendToDisplay(value) {
-  // If the display is showing "0", replace it with the clicked value
+
   if (display.value === "0" && value !== ".") {
     display.value = value;
   } else {
-    // Otherwise, append the value to the display
+
     display.value += value;
   }
 
   let lastChar = display.value.slice(-1);
 
-  // Prevent adding more than one operator
+
   if (isOperator(lastChar) && isOperator(value)) {
     return;
   }

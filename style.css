@@ -1,80 +1,139 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: #282c34;
+    background: #010a13;
+    color: #0ff;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Holographic moving background */
+.neon-grid {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 2px, transparent 2px);
+    background-size: 40px 40px;
+    animation: moveGrid 10s linear infinite;
+    z-index: -1;
+}
+
+@keyframes moveGrid {
+    from { background-position: 0 0; }
+    to { background-position: -200px 200px; }
+}
+
+/* Title with cyberpunk glitch effect */
+.title {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 20px #0ff, 0 0 40px #00f;
+    animation: flicker 1.5s infinite alternate;
+}
+
+@keyframes flicker {
+    0% { opacity: 1; text-shadow: 0 0 10px #0ff, 0 0 20px #00f; }
+    50% { opacity: 0.7; text-shadow: 0 0 30px #0ff, 0 0 50px #00f; }
+    100% { opacity: 1; text-shadow: 0 0 10px #0ff, 0 0 20px #00f; }
+}
+
+/* Calculator Panel */
 .calculator {
-  background: #1e1e1e;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  width: 320px;
+    background: rgba(0, 255, 255, 0.1);
+    border: 2px solid #0ff;
+    box-shadow: 0 0 15px #0ff;
+    padding: 25px;
+    font-size: 1.5rem;
+    margin: 20px auto;
+    width: 70%;
+    max-width: 400px;
+    text-shadow: 0 0 5px #0ff;
+    animation: aiGlitch 2s infinite;
 }
 
-#display {
-  width: 100%;
-  height: 60px;
-  font-size: 1.5em;
-  text-align: right;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  background: #333;
-  color: white;
-  margin-bottom: 10px;
+@keyframes aiGlitch {
+    0% { text-shadow: 0 0 5px #0ff, 0 0 10px #00f; }
+    50% { text-shadow: 0 0 20px #0ff, 0 0 40px #00f; }
+    100% { text-shadow: 0 0 5px #0ff, 0 0 10px #00f; }
 }
 
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+/* Calculator Buttons */
+.calculator-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 button {
-  height: 60px;
-  font-size: 1.2em;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  background: #444;
-  color: white;
-  transition: 0.2s;
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+    background: rgba(0, 255, 255, 0.2);
+    border: 2px solid #0ff;
+    color: #0ff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 0 15px #0ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: pulse 2s infinite alternate;
+}
+
+/* Glowing effect */
+@keyframes pulse {
+    from { box-shadow: 0 0 10px #0ff; }
+    to { box-shadow: 0 0 25px #0ff, 0 0 50px #00f; }
 }
 
 button:hover {
-  background: #666;
+    background: rgba(0, 255, 255, 0.4);
+    transform: scale(1.1);
 }
 
-.operator {
-  background: #f39c12;
+button:active {
+    background: #0ff;
+    color: #000;
 }
 
-.operator:hover {
-  background: #e67e22;
+/* Calculator Display */
+#display {
+    width: 87%;
+    height: 80px;
+    background: rgba(0, 255, 255, 0.3);
+    border: 2px solid #0ff;
+    color: #0ff;
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: right;
+    padding: 10px;
+    box-shadow: 0 0 15px #0ff;
+    margin-bottom: 20px;
 }
 
-.equal {
-  background: #2ecc71;
+/* Cyber Restart Button */
+#clear {
+    background: none;
+    border: 2px solid #0ff;
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    color: #0ff;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px #0ff;
+    margin-top: 10px;
 }
 
-.equal:hover {
-  background: #27ae60;
-}
-
-.delete {
-  background: #e74c3c;
-}
-
-.delete:hover {
-  background: #c0392b;
+#clear:hover {
+    background: #0ff;
+    color: #000;
 }

@@ -9,7 +9,6 @@ body {
     overflow: hidden;
 }
 
-/* Holographic moving background */
 .neon-grid {
     position: absolute;
     top: 0; left: 0;
@@ -26,7 +25,6 @@ body {
     to { background-position: -200px 200px; }
 }
 
-/* Title with cyberpunk glitch effect */
 .title {
     font-size: 2.5rem;
     text-transform: uppercase;
@@ -41,7 +39,6 @@ body {
     100% { opacity: 1; text-shadow: 0 0 10px #0ff, 0 0 20px #00f; }
 }
 
-/* Calculator Panel */
 .calculator {
     background: rgba(0, 255, 255, 0.1);
     border: 2px solid #0ff;
@@ -61,7 +58,6 @@ body {
     100% { text-shadow: 0 0 5px #0ff, 0 0 10px #00f; }
 }
 
-/* Calculator Buttons */
 .calculator-buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -88,7 +84,6 @@ button {
     animation: pulse 2s infinite alternate;
 }
 
-/* Glowing effect */
 @keyframes pulse {
     from { box-shadow: 0 0 10px #0ff; }
     to { box-shadow: 0 0 25px #0ff, 0 0 50px #00f; }
@@ -104,7 +99,6 @@ button:active {
     color: #000;
 }
 
-/* Calculator Display */
 #display {
     width: 87%;
     height: 80px;
@@ -119,7 +113,6 @@ button:active {
     margin-bottom: 20px;
 }
 
-/* Cyber Restart Button */
 #clear {
     background: none;
     border: 2px solid #0ff;

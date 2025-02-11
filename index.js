@@ -1,21 +1,35 @@
 let display = document.getElementById("display");
 
 function appendToDisplay(value) {
-  let display = document.getElementById("display");
+  // If the display is showing "0", replace it with the clicked value
+  if (display.value === "0" && value !== ".") {
+    display.value = value;
+  } else {
+    // Otherwise, append the value to the display
+    display.value += value;
+  }
+
   let lastChar = display.value.slice(-1);
 
+  // Prevent adding more than one operator
   if (isOperator(lastChar) && isOperator(value)) {
     return;
   }
 
+  // Prevent adding more than one decimal point in a number
   if (value === "." && lastNumberContainsDecimal(display.value)) {
     return;
   }
 
-  display.value += value;
+  // Show percentage as "X% of Y" while typing (this doesn't add 'of' if already present)
+  if (value === "%" && display.value && !display.value.includes(" of ")) {
+    display.value += " of ";
+    return;
+  }
 }
+
 function clearDisplay() {
-  display.value = "";
+  display.value = "0";
 }
 
 function calculateResult() {
@@ -25,11 +39,15 @@ function calculateResult() {
     // Handle exponentiation (replace "^" with "**" for JavaScript eval)
     expression = expression.replace(/\^/g, "**");
 
-    // Handle percentage (convert 50% to 50/100)
-    expression = expression.replace(/(\d+)%/g, "($1/100)");
+    // Handle percentage (convert "X%" to "(X/100)")
+    expression = expression.replace(/(\d+(\.\d+)?)%/g, "($1/100)");
 
+    // Convert "of" to multiplication
+    expression = expression.replace(/\bof\b/g, "*");
+    // Evaluate the expression
     display.value = eval(expression);
-  } catch {
+  } catch (error) {
+    console.error("Error in calculation:", error);
     display.value = "Error";
   }
 }
